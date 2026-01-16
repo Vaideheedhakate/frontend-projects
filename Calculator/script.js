@@ -1,9 +1,24 @@
 const input = document.getElementsByTagName('input')[0];
 const buttons = document.querySelectorAll('button');
 
+let str = "";
 for(let i=0; i<buttons.length; i++){
     let buttonElement = buttons[i];
     buttonElement.addEventListener('click', (e)=>{
-        input.value = e.target.innerHTML;
+        let innerHTML = e.target.innerText;
+        if(innerHTML === 'AC'){
+            str = "";
+        }
+        else if(innerHTML === 'DEL'){
+            str = str.slice(0, -1);
+        }
+        else if(innerHTML === '='){
+            str = eval(str);
+            
+        }
+        else{
+            str += e.target.innerText;
+        }
+        input.value = str;
     });
 }

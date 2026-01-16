@@ -13,8 +13,13 @@ for(let i=0; i<buttons.length; i++){
             str = str.slice(0, -1);
         }
         else if(innerHTML === '='){
-            str = eval(str);
-            
+            //str = eval(str);
+            try{
+                str = Function('"use strict";return (' + str + ')')();
+            }            
+            catch{
+                str = "Error";
+            }
         }
         else{
             str += e.target.innerText;
